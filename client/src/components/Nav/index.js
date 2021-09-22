@@ -2,8 +2,8 @@ import React from "react";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/Homepage">
+    <nav className="navbar fixed-top navbar-dark bg-dark navbar-expand-lg">
+      <a className="navbar-brand" href="/">
         HomeLogo
       </a>
       <a className="navbar-brand" href="/login">

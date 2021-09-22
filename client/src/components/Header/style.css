@@ -1,0 +1,23 @@
+#home {
+  padding: 250px 0px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.background-img1 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#name-title {
+  letter-spacing: 10px;
+  color: white;
+  text-shadow: 1px 1px 5px black;
+}
+
+#job-subtitle {
+  letter-spacing: 4px;
+  color: white;
+  text-shadow: 1px 1px 5px black;
+}

@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bootstrap": "^5.1.1",
     "concurrently": "^6.2.1",
     "nodemon": "^2.0.12"
   },
