@@ -1,3 +1,3 @@
 module.exports = {
-  Book: require("./jobs")
+  Gig: require("./jobs")
 };

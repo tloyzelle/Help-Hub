@@ -5,14 +5,14 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
 function Login(props) {
-  const [book, setBook] = useState({})
+  const [gig, setGig] = useState({})
 
   // When this component mounts, grab the book with the _id of props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   const {id} = useParams()
   useEffect(() => {
-    API.getBook(id)
-      .then(res => setBook(res.data))
+    API.getGig(id)
+      .then(res => setGig(res.data))
       .catch(err => console.log(err));
   }, [])
 
@@ -22,9 +22,9 @@ function Login(props) {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>
+              <h2>
                 Please Login
-              </h1>
+              </h2>
             </Jumbotron>
           </Col>
         </Row>
