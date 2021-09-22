@@ -4,12 +4,15 @@ import Books from "./pages/Homepage";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Header from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <Router>
       <div>
         <Nav />
+        <Header />
         <Switch>
           <Route exact path={["/", "/login"]}>
             <Login />
