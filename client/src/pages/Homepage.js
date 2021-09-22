@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import GigBtn from "../components/GigBtn"
+import GigForm from "../components/GigForm"
+import AddTask from "../components/AddTask";
+
 
 function Books() {
   // Setting our component's initial state
@@ -59,31 +63,15 @@ function Books() {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Application Desc</h1>
             </Jumbotron>
-            <form>
-              <Input
-                onChange={handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                onChange={handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
+              <Input />
+              <GigBtn
                 disabled={!(formObject.author && formObject.title)}
-                onClick={handleFormSubmit}
+                onClick={AddTask}
               >
                 Submit Book
-              </FormBtn>
-            </form>
+              </GigBtn>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
