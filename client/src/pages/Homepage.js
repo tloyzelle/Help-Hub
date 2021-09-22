@@ -11,29 +11,29 @@ import GigForm from "../components/GigForm"
 import AddTask from "../components/AddTask";
 
 
-function Books() {
+function Gigs() {
   // Setting our component's initial state
-  const [books, setBooks] = useState([])
+  const [gigs, setGigs] = useState([])
   const [formObject, setFormObject] = useState({})
 
-  // Load all books and store them with setBooks
+  // Load all gigs and store them with setBooks
   useEffect(() => {
-    loadBooks()
+    loadGigs()
   }, [])
 
-  // Loads all books and sets them to books
-  function loadBooks() {
-    API.getBooks()
+  // Loads all gigs and sets them to gigs
+  function loadGigs() {
+    API.getGigs()
       .then(res => 
-        setBooks(res.data)
+        setGigs(res.data)
       )
       .catch(err => console.log(err));
   };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then(res => loadBooks())
+  // Deletes a gig from the database with a given id, then reloads gigs from the db
+  function deleteGig(id) {
+    API.deleteGig(id)
+      .then(res => loadGigs())
       .catch(err => console.log(err));
   }
 
@@ -43,17 +43,18 @@ function Books() {
     setFormObject({...formObject, [name]: value})
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // When the form is submitted, use the API.saveGig method to save the gig data
+  // Then reload gigs from the database
+
   function handleFormSubmit(event) {
     event.preventDefault();
     if (formObject.title && formObject.author) {
-      API.saveBook({
+      API.saveGig({
         title: formObject.title,
         author: formObject.author,
         synopsis: formObject.synopsis
       })
-        .then(res => loadBooks())
+        .then(res => loadGigs())
         .catch(err => console.log(err));
     }
   };
@@ -77,16 +78,16 @@ function Books() {
             <Jumbotron>
               <h1>Books On My List</h1>
             </Jumbotron>
-            {books.length ? (
+            {gigs.length ? (
               <List>
-                {books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {gigs.map(gig => (
+                  <ListItem key={gig._id}>
+                    <Link to={"/gigs/" + gig._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {gig.title} by {gig.author}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => deleteGig(gig._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -100,4 +101,4 @@ function Books() {
   }
 
 
-export default Books;
+export default Gigs;
