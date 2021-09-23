@@ -10,32 +10,32 @@ mongoose.connect(
 
 const gigSeed = [
   {
-    title: "",
-    payment: "",
+    title: "Mow my lawn please",
+    payment: "$50",
     description:
-      "",
-    date: ""
+      "I've let my lawn get away from me. Someone please help!",
+    date: "Anytime!"
   },
   {
-    title: "",
-    payment: "",
+    title: "Cut down my tree!",
+    payment: "Free Firewood",
     description:
-      "",
-    date: ""
+      "Need someone to cut down this pesky tree in my front yard!",
+    date: "No later than 11/11/22"
   },
   {
-    title: "",
-    payment: "",
+    title: "Walk my dog",
+    payment: "$7 each walk",
     description:
-      "",
-    date: ""
+      "I need someone that can come walk my dog, Coop, on Monday mornings",
+    date: "Every Monday Morning before 8:00am"
   },
   {
-    title: "",
-    payment: "",
+    title: "Need someone to give my car a wash",
+    payment: "$30",
     description:
-      "",
-    date: ""
+      "I have a dirty white Subaru that needs a good wash. I have all of the cleaning supplies, i just can't walk so i need someone to help.",
+    date: "Wednesday"
   },
 ];
 
