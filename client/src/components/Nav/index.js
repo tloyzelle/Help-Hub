@@ -12,8 +12,11 @@ function Nav() {
       <a className="navbar-brand" href="/login">
         Login
       </a>
-      <a className="navbar-brand" href="/profile">
+      <a className="navbar-brand" href="/Profile">
         Profile
+      </a>
+      <a className="navbar-brand" href="/Homepage">
+        Gigs
       </a>
     </nav>
   );

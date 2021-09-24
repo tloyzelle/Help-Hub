@@ -97,7 +97,7 @@ function Gigs() {
                       <div> </div>
                       <p>{job.payment} </p>
                     
-                    <DeleteBtn onClick={() => deleteGig(job._id)} />
+                    <DeleteBtn onClick={() => deleteGig(job.id)} />
                   </ListItem>
                 ))}
               </List>
