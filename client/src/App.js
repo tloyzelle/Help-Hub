@@ -23,6 +23,8 @@ function App() {
           </Route>
           <Route exact path = "/Profile">
             <Profile/>
+          </Route>  
+          <Route exact path = "/NoMatch">  
             <NoMatch />
           </Route>
         </Switch>
