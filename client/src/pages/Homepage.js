@@ -9,6 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import GigBtn from "../components/GigBtn"
 import GigForm from "../components/GigForm"
 import AddTask from "../components/AddTask";
+import jobs from "../utils/jobs.json"
 
 
 function Gigs() {
@@ -64,30 +65,39 @@ function Gigs() {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Application Desc</h1>
+              <h1>Add a Gig</h1>
             </Jumbotron>
+            <p>Title</p>
               <Input />
-              <GigBtn
-                disabled={!(formObject.author && formObject.title)}
-                onClick={AddTask}
-              >
-                Submit Book
-              </GigBtn>
+            <p>Description</p>  
+              <TextArea/>
+            <p>Payment</p>  
+              <Input />
+            <p>Date/Time of Gig</p>
+              <Input/>  
+              <FormBtn>
+              Submit
+              </FormBtn>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1> Gigs List</h1>
             </Jumbotron>
-            {gigs.length ? (
+            {jobs.length ? (
               <List>
-                {gigs.map(gig => (
-                  <ListItem key={gig._id}>
-                    <Link to={"/gigs/" + gig._id}>
+                {jobs.map(job => (
+                  <ListItem key={job.id}>
+                    <Link to={"/gigs/" + job.id}>
                       <strong>
-                        {gig.title} by {gig.author}
+                       {job.title} 
                       </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => deleteGig(gig._id)} />
+                      </Link>
+                      <p> {job.date}</p>
+                      <p> {job.description}</p>
+                      <div> </div>
+                      <p>{job.payment} </p>
+                    
+                    <DeleteBtn onClick={() => deleteGig(job._id)} />
                   </ListItem>
                 ))}
               </List>
