@@ -1,4 +1,5 @@
 import React from "react";
+import  { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
@@ -9,10 +10,18 @@ import Header from "./components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [token, setToken] = useState();
+
+  
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+  
   return (
+    
     <Router>
       <div>
-        <Nav />
+      <Nav />
         <Header />
         <Switch>
           <Route exact path={["/", "/login"]}>
