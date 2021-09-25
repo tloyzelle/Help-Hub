@@ -10,19 +10,16 @@ import Header from "./components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
 function App() {
 
-  
-  return (
-    
+  return (   
     <Router>
-      <div>
+    <div>
       <Nav />
         <Header />
         <Switch>
           <Route exact path="/Homepage">
-            <Homepage />
+        <Homepage />
           </Route>
           <Route exact path = "/Profile">
             <Profile/>
@@ -33,6 +30,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    
   );
 }
 

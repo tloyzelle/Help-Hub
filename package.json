@@ -23,6 +23,7 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.8.0",
     "axios": "^0.21.4",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16"
