@@ -38,7 +38,6 @@ function Login(props) {
           </Col>
         </Row>
         <Row>
-         
         </Row>
      </Container>
     );
