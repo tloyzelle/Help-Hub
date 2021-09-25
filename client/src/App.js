@@ -9,8 +9,18 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+}
+
 function App() {
-  const [token, setToken] = useState();
+const token = getToken();   
 
   
   if(!token) {
@@ -24,9 +34,6 @@ function App() {
       <Nav />
         <Header />
         <Switch>
-          <Route exact path={["/", "/login"]}>
-            <Login />
-          </Route>
           <Route exact path="/Homepage">
             <Homepage />
           </Route>
