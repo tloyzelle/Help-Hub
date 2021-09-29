@@ -25,8 +25,6 @@ function Login(props) {
   return (
     
       <Container fluid>
-        <Header>
-        </Header>
         <div>
         <h3 className="text-center">Please Log In</h3>
         </div>

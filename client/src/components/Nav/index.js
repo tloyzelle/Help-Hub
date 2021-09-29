@@ -1,6 +1,7 @@
 import React from "react";
-import MainNav from "../MainNav";
 import AuthNav from "../AuthNav";
+import MainNav from "../MainNav";
+import './style.css'
 
 const NavBar = () => {
   return (

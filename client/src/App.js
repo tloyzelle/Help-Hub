@@ -14,12 +14,12 @@ function App() {
 
   return (   
     <Router>
-    <div>
-      <Nav />
+      <div>
+        <Nav />
         <Header />
         <Switch>
-          <Route exact path="/Homepage">
-        <Homepage />
+          <Route exact path="/">
+            <Homepage />
           </Route>
           <Route exact path = "/Profile">
             <Profile/>
