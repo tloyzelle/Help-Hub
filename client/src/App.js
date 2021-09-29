@@ -16,7 +16,6 @@ function App() {
     <Router>
       <div>
         <Nav />
-        <Header />
         <Switch>
           <Route exact path="/">
             <Homepage />
