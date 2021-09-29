@@ -3,7 +3,7 @@ import  { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
-import Profile from "./pages/Profile"
+import Profile from "./pages/profile"
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Header from "./components/Header";

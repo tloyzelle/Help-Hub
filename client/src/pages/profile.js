@@ -77,8 +77,8 @@ const Profile = () => {
           />
         </div>
         <div className="col-md text-center text-md-left">
-          <h2>{user.name}</h2>
-          <p className="lead text-muted">{user.email}</p>
+          <h2>{user.nickname}'s profile</h2>
+          <p className="lead text-muted">Contact: {user.email}</p>
         </div>
       </div>
       <div className="row">
