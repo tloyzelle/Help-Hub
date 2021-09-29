@@ -13,18 +13,3 @@
 #sign-up-box {
   background-color: #DDEBFB ;
 }
-
-/* Media */
-@media screen and (max-width: 1024px) {
-  .container {
-   margin-left: 3rem;
-   margin-right: 3rem;
-   }
-}
-
-@media screen and (max-width: 768px) {
-   .container {
-    margin-left: 2rem;
-    margin-right: 2rem;
-   }
-}

@@ -1,25 +1,20 @@
 import React from "react";
+import AuthNav from "../AuthNav";
+import MainNav from "../MainNav";
+import './style.css'
 
-function Nav() {
+const NavBar = () => {
   return (
-    <nav className="navbar fixed-top navbar-dark bg-dark navbar-expand-lg">
-      <a className="navbar-brand" href="/">
-        HomeLogo
-      </a>
-      <a className="navbar-brand" href="/login">
-        Filter
-      </a>
-      <a className="navbar-brand" href="/login">
-        Login
-      </a>
-      <a className="navbar-brand" href="/Profile">
-        Profile
-      </a>
-      <a className="navbar-brand" href="/Homepage">
-        Gigs
-      </a>
-    </nav>
+    <div className="nav-container mb-3">
+      <nav className="navbar navbar-expand-md navbar-light bg-light">
+        <div className="container">
+          <div className="navbar-brand logo" />
+          <MainNav />
+          <AuthNav />
+        </div>
+      </nav>
+    </div>
   );
-}
+};
 
-export default Nav;
+export default NavBar;

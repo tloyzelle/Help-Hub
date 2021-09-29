@@ -10,9 +10,12 @@ import GigBtn from "../components/GigBtn"
 import GigForm from "../components/GigForm"
 import AddTask from "../components/AddTask";
 import jobs from "../utils/jobs.json"
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Gigs() {
+  console.log(useAuth0());
+
   // Setting our component's initial state
   const [gigs, setGigs] = useState([])
   const [formObject, setFormObject] = useState({})
