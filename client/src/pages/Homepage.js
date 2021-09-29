@@ -9,12 +9,11 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import GigBtn from "../components/GigBtn"
 import GigForm from "../components/GigForm"
 import AddTask from "../components/AddTask";
-import jobs from "../utils/jobs.json"
 import { useAuth0 } from "@auth0/auth0-react";
+import Header from "../components/Header";
 
 
 function Gigs() {
-  console.log(useAuth0());
 
   // Setting our component's initial state
   const [gigs, setGigs] = useState([])
@@ -52,55 +51,83 @@ function Gigs() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.title && formObject.author) {
+    if (formObject.title && formObject.description) {
       API.saveGig({
         title: formObject.title,
-        author: formObject.author,
-        synopsis: formObject.synopsis
+        description: formObject.description,
+        date: formObject.date,
+        payment: formObject.payment
       })
+      .then(() => setFormObject({
+        title: "",
+        description: "",
+        date: "",
+        payment: ""
+      }))
         .then(res => loadGigs())
         .catch(err => console.log(err));
     }
   };
 
     return (
+      <div>
+      <Header />
       <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
               <h1>Add a Gig</h1>
             </Jumbotron>
-            <p>Title</p>
-              <Input />
-            <p>Description</p>  
-              <TextArea/>
-            <p>Payment</p>  
-              <Input />
-            <p>Date/Time of Gig</p>
-              <Input/>  
-              <FormBtn>
-              Submit
+            <form>
+              <Input
+                onChange={handleInputChange}
+                name="title"
+                placeholder="Title (required)"
+                value={formObject.title}
+              />
+              <Input
+                onChange={handleInputChange}
+                name="description"
+                placeholder="Description (required)"
+                value={formObject.description}
+              />
+              <Input
+                onChange={handleInputChange}
+                name="date"
+                placeholder="Date (required)"
+                value={formObject.date}
+              />
+              <Input
+                onChange={handleInputChange}
+                name="payment"
+                placeholder="Payment (optional)"
+                value={formObject.payment}
+              />
+              <FormBtn
+                onClick={handleFormSubmit}
+              >
+                Submit Book
               </FormBtn>
+            </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1> Gigs List</h1>
             </Jumbotron>
-            {jobs.length ? (
+            {gigs.length ? (
               <List>
-                {jobs.map(job => (
-                  <ListItem key={job.id}>
-                    <Link to={"/gigs/" + job.id}>
+                {gigs.map(gig => (
+                  <ListItem key={gig._id}>
+                    <Link to={"/gigs/" + gig._id}>
                       <strong>
-                       {job.title} 
+                       {gig.title} 
                       </strong>
                       </Link>
-                      <p> {job.date}</p>
-                      <p> {job.description}</p>
-                      <div> </div>
-                      <p>{job.payment} </p>
+                      <p><strong>Date:</strong> {gig.date}</p>
+                      <p><strong>Description:</strong> {gig.description}</p>
+                      <p><strong>Payment:</strong> {gig.payment} </p>
                     
-                    <DeleteBtn onClick={() => deleteGig(job._id)} />
+                    <DeleteBtn onClick={() => deleteGig(gig._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -110,6 +137,8 @@ function Gigs() {
           </Col>
         </Row>
       </Container>
+      </div>
+
     );
   }
 
