@@ -56,7 +56,8 @@ function Gigs() {
         title: formObject.title,
         description: formObject.description,
         date: formObject.date,
-        payment: formObject.payment
+        payment: formObject.payment,
+        contact: formObject.contact
       })
       .then(() => setFormObject({
         title: "",
@@ -103,6 +104,12 @@ function Gigs() {
                 placeholder="Payment (optional)"
                 value={formObject.payment}
               />
+               <Input
+                onChange={handleInputChange}
+                name="contact"
+                placeholder="Contact (required)"
+                value={formObject.contact}
+              />
               <FormBtn
                 onClick={handleFormSubmit}
               >
@@ -126,6 +133,7 @@ function Gigs() {
                       <p><strong>Date:</strong> {gig.date}</p>
                       <p><strong>Description:</strong> {gig.description}</p>
                       <p><strong>Payment:</strong> {gig.payment} </p>
+                      <p><strong>Contact:</strong> {gig.contact} </p>
                     
                     <DeleteBtn onClick={() => deleteGig(gig._id)} />
                   </ListItem>
