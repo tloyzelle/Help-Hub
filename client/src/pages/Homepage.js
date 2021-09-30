@@ -113,7 +113,7 @@ function Gigs() {
               <FormBtn
                 onClick={handleFormSubmit}
               >
-                Submit Book
+                Submit Job
               </FormBtn>
             </form>
           </Col>
@@ -130,12 +130,8 @@ function Gigs() {
                        {gig.title} 
                       </strong>
                       </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>
-                      <p><strong>Description:</strong> {gig.description}</p>
-                      <p><strong>Payment:</strong> {gig.payment} </p>
-                      <p><strong>Contact:</strong> {gig.contact} </p>
-                    
-                    <DeleteBtn onClick={() => deleteGig(gig._id)} />
+                      <p><strong>Date:</strong> {gig.date}</p>                    
+                    {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
                   </ListItem>
                 ))}
               </List>
