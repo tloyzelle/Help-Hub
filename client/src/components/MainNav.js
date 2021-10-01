@@ -10,6 +10,9 @@ function MainNav() {
       <a className="navbar-brand" href="/Profile">
         Profile
       </a>
+      <a className="navbar-brand" href="/Homepage">
+        Gigs
+      </a>
 
     </nav>
   );

@@ -27,6 +27,9 @@ function App() {
           <Route exact path = "/NoMatch">  
             <NoMatch />
           </Route>
+          <Route exact path = "/Homepage">  
+            <Homepage />
+          </Route>
         </Switch>
       </div>
     </Router>
