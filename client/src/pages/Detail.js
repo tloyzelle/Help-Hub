@@ -9,7 +9,6 @@ function Detail(props) {
 
   // When this component mounts, grab the gig with the _id of props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  
   const {id} = useParams()
   useEffect(() => {
     API.getGig(id)
@@ -25,7 +24,7 @@ function Detail(props) {
               <h1>
                 <strong>{gig.title}</strong>
               </h1>
-              <h3>{gig.date}</h3>
+              <h3> <strong> Date: </strong>{gig.date}</h3>
             </Jumbotron>
           </Col>
         </Row>
@@ -37,10 +36,10 @@ function Detail(props) {
                 {gig.description}
               </p>
               <p className="text-center">
-                {gig.payment}
+               <strong> Payment: </strong> {gig.payment}
               </p>
               <p className="text-center">
-                {gig.contact}
+              <strong> Contact: </strong> {gig.contact}
               </p>
             </div>
           </Col>
