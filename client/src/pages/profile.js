@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 
 
 const Profile = () => {
+  
   console.log(useAuth0());
 
   const { user, isAuthenticated , getAccessTokenSilently } = useAuth0();
@@ -62,7 +63,7 @@ const Profile = () => {
             <div></div>
             <div></div>  
             <h4 className= "text-center">About</h4>
-            <p className= "text-center">About me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me</p> 
+            <p className= "text-center">{user.sub.hobby}</p> 
           </Container> 
             <h4 className= "text-center">Contact</h4> 
           <List>
