@@ -7,8 +7,18 @@ import Nav from "./components/Nav";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Detail from "./pages/Detail";
 
+import ProtectedRoute from "./auth/protected-route";
+import { Loading } from "./components";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 function App() {
+
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (   
     <Router>
@@ -18,17 +28,17 @@ function App() {
           <Route exact path="/">
           
           </Route>
-          <Route exact path = "/Profile">
+          <ProtectedRoute path = "/Homepage">  
+            <Homepage />
+          </ProtectedRoute>
+          <ProtectedRoute path = "/Profile">
             <Profile/>
-          </Route>  
-          <Route exact path="/gigs/:id">
+          </ProtectedRoute>  
+          <ProtectedRoute path="/gigs/:id">
             <Detail />
-          </Route>
+          </ProtectedRoute>
           <Route exact path = "/NoMatch">  
             <NoMatch />
-          </Route>
-          <Route exact path = "/Homepage">  
-            <Homepage />
           </Route>
         </Switch>
       </div>
