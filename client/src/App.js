@@ -7,9 +7,11 @@ import Nav from "./components/Nav";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Detail from "./pages/Detail";
 
+
 import ProtectedRoute from "./auth/protected-route";
 import { Loading } from "./components";
 import { useAuth0 } from "@auth0/auth0-react";
+import Landing from "./pages/Landing";
 
 
 function App() {
@@ -26,7 +28,7 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/">
-          
+          <Landing/>
           </Route>
           <ProtectedRoute path = "/Homepage">  
             <Homepage />

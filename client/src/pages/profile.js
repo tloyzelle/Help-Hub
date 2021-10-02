@@ -2,7 +2,8 @@ import React from "react";
 import { Col, Row, Container } from "../components/Grid";
 import { ListItem, List  } from "../components/List";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { Loading } from "../components/index";
 
 const Profile = () => {
   console.log(useAuth0());
@@ -43,7 +44,9 @@ const Profile = () => {
   ));
 }
 
-export default Profile;
+export default withAuthenticationRequired(Profile, {
+  onRedirecting: () => <Loading />,
+});
 
 
 // // src/views/profile.js
