@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { useAuth0 } from "@auth0/auth0-react"
 
 function Detail(props) {
   const [gig, setGig] = useState({})
@@ -16,6 +17,8 @@ function Detail(props) {
       .catch(err => console.log(err));
   }, [])
 
+  const { user, isLoading, isAuthenticated } = useAuth0();
+
   return (
       <Container fluid>
         <Row>
@@ -25,6 +28,7 @@ function Detail(props) {
                 <strong>{gig.title}</strong>
               </h1>
               <h3> <strong> Date: </strong>{gig.date}</h3>
+              <a className= "text-center" href= {user.nickname}>{user.nickname}</a>
             </Jumbotron>
           </Col>
         </Row>
@@ -46,7 +50,7 @@ function Detail(props) {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Homepage</Link>
+            <Link to="/Homepage">← Back to Gigs</Link>
           </Col>
         </Row>
       </Container>
