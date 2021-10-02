@@ -16,5 +16,15 @@ export default {
   // Saves a gig to the database
   saveGig: function(gigData) {
     return axios.post("/api/gigs", gigData);
-  }
+  },
+  getUsers: function() {
+    return axios.get("/api/v2/users");
+  },
+  // Gets the gig with the given id
+  getUser: function(id) {
+    return axios.get("/api/v2/users" + id);
+  },
+
+  // Saves a gig to the database
+ 
 };

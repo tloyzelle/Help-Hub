@@ -48,6 +48,8 @@ function Gigs() {
   // When the form is submitted, use the API.saveGig method to save the gig data
   // Then reload gigs from the database
 
+
+
   function handleFormSubmit(event) {
     event.preventDefault();
     if (formObject.title && formObject.description) {
@@ -56,7 +58,8 @@ function Gigs() {
         description: formObject.description,
         date: formObject.date,
         payment: formObject.payment,
-        contact: formObject.contact
+        contact: formObject.contact,
+        
       })
       .then(() => setFormObject({
         title: "",
@@ -69,7 +72,7 @@ function Gigs() {
     }
   };
 
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
     return (
       isAuthenticated && (

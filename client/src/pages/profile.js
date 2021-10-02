@@ -30,7 +30,7 @@ const Profile = () => {
             <h4 className= "text-center">Contact</h4> 
           <List>
             <ListItem>
-              <a className="list-group-item list-group-item-action"  href={user.email}>{user.email}</a>
+              <a className="list-group-item list-group-item-action"  href="mailto:{user.email}">{user.email}</a>
             </ListItem>
             <ListItem>
               <a className="list-group-item list-group-item-action" href="">Phone: xxx.xxx.xxxx</a>
