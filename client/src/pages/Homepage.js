@@ -6,11 +6,10 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import GigBtn from "../components/GigBtn"
-import GigForm from "../components/GigForm"
-import AddTask from "../components/AddTask";
-import { useAuth0 } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { Loading } from "../components/index";
 import Header from "../components/Header";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Gigs() {
@@ -70,7 +69,10 @@ function Gigs() {
     }
   };
 
+  const { isAuthenticated } = useAuth0();
+
     return (
+      isAuthenticated && (
       <div>
       <Header />
       <Container fluid>
@@ -143,8 +145,10 @@ function Gigs() {
       </Container>
       </div>
 
-    );
-  }
+    ));
+    }
 
 
-export default Gigs;
+    export default withAuthenticationRequired(Gigs, {
+      onRedirecting: () => <Loading />,
+    });
