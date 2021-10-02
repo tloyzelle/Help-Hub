@@ -1,5 +1,5 @@
 import React from "react";
-import AuthNav from "./AuthNav";
+
 
 function MainNav() {
   return (

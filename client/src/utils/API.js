@@ -4,8 +4,7 @@ export default {
   // Gets all gigs
   getGigs: function() {
     return axios.get("/api/gigs");
-  },
-  // Gets the gig with the given id
+  },  // Gets the gig with the given id
   getGig: function(id) {
     return axios.get("/api/gigs/" + id);
   },
@@ -17,12 +16,12 @@ export default {
   saveGig: function(gigData) {
     return axios.post("/api/gigs", gigData);
   },
-  getUsers: function() {
-    return axios.get("/api/v2/users");
+  getUsers: function () {
+    return axios.get("https://dev-9jk73ji7.us.auth0.com/api/v2/users");
   },
   // Gets the gig with the given id
   getUser: function(id) {
-    return axios.get("/api/v2/users" + id);
+    return axios.get("https://dev-9jk73ji7.us.auth0.com/api/v2/user" + id);
   },
 
   // Saves a gig to the database
