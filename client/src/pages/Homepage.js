@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Loading } from "../components/index";
 import Header from "../components/Header";
@@ -33,11 +32,11 @@ function Gigs() {
   };
 
   // Deletes a gig from the database with a given id, then reloads gigs from the db
-  function deleteGig(id) {
+ /* function deleteGig(id) {
     API.deleteGig(id)
       .then(res => loadGigs())
       .catch(err => console.log(err));
-  }
+  } */
 
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
@@ -54,6 +53,7 @@ function Gigs() {
     event.preventDefault();
     if (formObject.title && formObject.description) {
       API.saveGig({
+        name: user.name,
         title: formObject.title,
         description: formObject.description,
         date: formObject.date,
@@ -62,6 +62,7 @@ function Gigs() {
         
       })
       .then(() => setFormObject({
+       
         title: "",
         description: "",
         date: "",
@@ -85,6 +86,7 @@ function Gigs() {
               <h1>Add a Gig</h1>
             </Jumbotron>
             <form>
+
               <Input
                 onChange={handleInputChange}
                 name="title"
@@ -132,7 +134,7 @@ function Gigs() {
                   <ListItem key={gig._id}>
                     <Link to={"/gigs/" + gig._id}>
                       <strong>
-                       {gig.title} 
+                       {gig.title} by {user.name}
                       </strong>
                       </Link>
                       <p><strong>Date:</strong> {gig.date}</p>                    

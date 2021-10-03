@@ -4,12 +4,50 @@ import { ListItem, List  } from "../components/List";
 import { useAuth0 } from "@auth0/auth0-react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Loading } from "../components/index";
+import { useState, useEffect } from "react";
+
+
+
+
 
 const Profile = () => {
+  
   console.log(useAuth0());
 
-  const { user, isLoading, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated , getAccessTokenSilently } = useAuth0();
 
+  const [userMetadata, setUserMetadata] = useState(null);
+
+  useEffect(() => {
+    const getUserMetadata = async () => {
+      const domain = "dev-9jk73ji7.us.auth0.com";
+  
+      try {
+        const accessToken = await getAccessTokenSilently({
+          audience: `https://${domain}/api/v2/`,
+          scope: "read:current_user",
+        });
+  
+        const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
+  
+        const metadataResponse = await fetch(userDetailsByIdUrl, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+  
+        const { user_metadata } = await metadataResponse.json();
+  
+        setUserMetadata(user_metadata);
+        console.log(user_metadata);
+      } catch (e) {
+        console.log(e.message);
+      }
+      
+    };
+  
+    getUserMetadata();
+  }, [getAccessTokenSilently, user.sub]);
 
   return (
     isAuthenticated && (
@@ -25,20 +63,22 @@ const Profile = () => {
             <div></div>
             <div></div>  
             <h4 className= "text-center">About</h4>
-            <p className= "text-center">About me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me</p> 
+            <p className= "text-center">{user.sub.hobby}</p> 
           </Container> 
             <h4 className= "text-center">Contact</h4> 
           <List>
             <ListItem>
               <a className="list-group-item list-group-item-action"  href="mailto:{user.email}">{user.email}</a>
             </ListItem>
-            <ListItem>
-              <a className="list-group-item list-group-item-action" href="">Phone: xxx.xxx.xxxx</a>
-            </ListItem>
           </List> 
         </Col>
         <Col size="md-6 sm-12">
         </Col>
+        {userMetadata ? (
+          <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
+        ) : (
+          "No user metadata defined"
+        )}
       </Row>
     </Container>
   ));

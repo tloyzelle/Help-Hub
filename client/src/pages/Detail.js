@@ -5,19 +5,39 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react"
 
+
 function Detail(props) {
   const [gig, setGig] = useState({})
 
+ 
+
   // When this component mounts, grab the gig with the _id of props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+
   const {id} = useParams()
+
   useEffect(() => {
     API.getGig(id)
       .then(res => setGig(res.data))
       .catch(err => console.log(err));
-  }, [])
 
-  const { user, isLoading, isAuthenticated } = useAuth0();
+     /* API.getUsers().then((results) => {
+        this.setState({
+        users: results.data.results,
+                });
+            });
+      console.log(users) */
+        
+    
+  }, )
+
+ 
+
+ 
+
+  const { user } = useAuth0();
+
+  
 
   return (
       <Container fluid>
@@ -28,7 +48,7 @@ function Detail(props) {
                 <strong>{gig.title}</strong>
               </h1>
               <h3> <strong> Date: </strong>{gig.date}</h3>
-              <a className= "text-center" href= {user.nickname}>{user.nickname}</a>
+              <a className= "text-center" href={gig.name}>{user.nickname}</a>
             </Jumbotron>
           </Col>
         </Row>

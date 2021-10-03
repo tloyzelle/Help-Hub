@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import React from "react";
+import { Container } from "../components/Grid";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../components/Header"
 
