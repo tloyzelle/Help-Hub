@@ -30,12 +30,7 @@ function Detail(props) {
         
     
   }, )
-
- 
-
- 
-
-  const { user } = useAuth0();
+ const { user } = useAuth0();
 
   
 

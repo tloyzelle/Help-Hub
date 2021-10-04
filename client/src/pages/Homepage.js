@@ -47,16 +47,14 @@ function Gigs() {
   // When the form is submitted, use the API.saveGig method to save the gig data
   // Then reload gigs from the database
 
-
-
   function handleFormSubmit(event) {
     event.preventDefault();
     if (formObject.title && formObject.description) {
       API.saveGig({
-        name: user.name,
         title: formObject.title,
         description: formObject.description,
         date: formObject.date,
+        location: formObject.location,
         payment: formObject.payment,
         contact: formObject.contact,
         
@@ -66,13 +64,38 @@ function Gigs() {
         title: "",
         description: "",
         date: "",
-        payment: ""
+        location: "",
+        payment: "",
+        contact: ""
       }))
         .then(res => loadGigs())
         .catch(err => console.log(err));
+        
     }
   };
 
+  const [searchInput, setSearchInput] = useState('');
+
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue)
+    if (searchInput !== '') {
+        const filteredData = gigs.filter((gig) => {
+            return Object.values(gig).join('').toLowerCase().includes(searchInput.toLowerCase())
+        })
+        setFilteredResults(filteredData)
+    }
+    else{
+        setFilteredResults(gigs)
+    }
+}
+const filteredData = gigs.filter((gig) => {
+  return Object.values(gig).join('').toLowerCase().includes(searchInput.toLowerCase())
+  })
+
+ console.log(filteredData)
+
+ const [filteredResults, setFilteredResults] = useState([]);
+  
   const { user, isAuthenticated } = useAuth0();
 
     return (
@@ -105,6 +128,12 @@ function Gigs() {
                 placeholder="Date (required)"
                 value={formObject.date}
               />
+               <Input
+                onChange={handleInputChange}
+                name="location"
+                placeholder="location (required)"
+                value={formObject.date}
+              />
               <Input
                 onChange={handleInputChange}
                 name="payment"
@@ -127,24 +156,41 @@ function Gigs() {
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1> Gigs List</h1>
+              <Input icon='search'
+                placeholder='Search a Location'
+                onChange={(e) => searchItems(e.target.value)}
+            />
             </Jumbotron>
-            {gigs.length ? (
+            {gigs.length > 2 ? (
               <List>
-                {gigs.map(gig => (
+                {filteredResults.map(gig => (
                   <ListItem key={gig._id}>
                     <Link to={"/gigs/" + gig._id}>
                       <strong>
-                       {gig.title} by {user.name}
+                       {gig.title}
                       </strong>
                       </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>                    
+                      <p><strong>Date:</strong> {gig.date}</p>
+                      <p><strong>Location:</strong> {gig.location}</p>                 
                     {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+              gigs.map(gig => (
+                <ListItem key={gig._id}>
+                  <Link to={"/gigs/" + gig._id}>
+                    <strong>
+                     {gig.title}
+                    </strong>
+                    </Link>
+                    <p><strong>Date:</strong> {gig.date}</p>
+                    <p><strong>Location:</strong> {gig.location}</p>                 
+                  {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
+                </ListItem>
+              )))}
+            
+            
           </Col>
         </Row>
       </Container>
@@ -152,7 +198,6 @@ function Gigs() {
 
     ));
     }
-
 
     export default withAuthenticationRequired(Gigs, {
       onRedirecting: () => <Loading />,
