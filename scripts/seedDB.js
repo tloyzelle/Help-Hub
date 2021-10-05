@@ -3,7 +3,7 @@ const db = require("../models");
 
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
+  "mongodb+srv://brob92993:berian27@cluster0.ixuwn.mongodb.net/Gig?retryWrites=true&w=majority" ||
   "mongodb://localhost/gigs"
 );
 
