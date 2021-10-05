@@ -131,8 +131,8 @@ const filteredData = gigs.filter((gig) => {
                <Input
                 onChange={handleInputChange}
                 name="location"
-                placeholder="location (required)"
-                value={formObject.date}
+                placeholder="Location (required)"
+                value={formObject.location}
               />
               <Input
                 onChange={handleInputChange}
