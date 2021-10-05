@@ -25,9 +25,10 @@ function Gigs() {
   // Loads all gigs and sets them to gigs
   function loadGigs() {
     API.getGigs()
-      .then(res => 
+      .then(res => {
         setGigs(res.data)
-      )
+       
+      })
       .catch(err => console.log(err));
   };
 
@@ -94,7 +95,7 @@ const filteredData = gigs.filter((gig) => {
 
  console.log(filteredData)
 
- const [filteredResults, setFilteredResults] = useState([]);
+ const [filteredResults, setFilteredResults] = useState(filteredData);
   
   const { user, isAuthenticated } = useAuth0();
 
@@ -131,8 +132,8 @@ const filteredData = gigs.filter((gig) => {
                <Input
                 onChange={handleInputChange}
                 name="location"
-                placeholder="location (required)"
-                value={formObject.date}
+                placeholder="Location (required)"
+                value={formObject.location}
               />
               <Input
                 onChange={handleInputChange}
@@ -177,6 +178,7 @@ const filteredData = gigs.filter((gig) => {
                 ))}
               </List>
             ) : (
+              <List> {
               gigs.map(gig => (
                 <ListItem key={gig._id}>
                   <Link to={"/gigs/" + gig._id}>
@@ -188,7 +190,9 @@ const filteredData = gigs.filter((gig) => {
                     <p><strong>Location:</strong> {gig.location}</p>                 
                   {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
                 </ListItem>
-              )))}
+              ))}
+              </List>
+              )}
             
             
           </Col>
