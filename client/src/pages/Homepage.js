@@ -73,7 +73,7 @@ function Gigs() {
         
     }
   };
-
+// set the search components initial state
   const [searchInput, setSearchInput] = useState('');
 
   const searchItems = (searchValue) => {
