@@ -16,6 +16,8 @@ function Gigs() {
   // Setting our component's initial state
   const [gigs, setGigs] = useState([])
   const [formObject, setFormObject] = useState({})
+  
+  const { user, isAuthenticated } = useAuth0();
 
   // Load all gigs and store them with setBooks
   useEffect(() => {
@@ -58,6 +60,7 @@ function Gigs() {
         location: formObject.location,
         payment: formObject.payment,
         contact: formObject.contact,
+        user: user.name
         
       })
       .then(() => setFormObject({
@@ -67,7 +70,8 @@ function Gigs() {
         date: "",
         location: "",
         payment: "",
-        contact: ""
+        contact: "",
+        user: ""
       }))
         .then(res => loadGigs())
         .catch(err => console.log(err));
@@ -97,7 +101,6 @@ const filteredData = gigs.filter((gig) => {
 
  const [filteredResults, setFilteredResults] = useState(filteredData);
   
-  const { user, isAuthenticated } = useAuth0();
 
     return (
       isAuthenticated && (
@@ -110,7 +113,6 @@ const filteredData = gigs.filter((gig) => {
               <h1>Add a Gig</h1>
             </Jumbotron>
             <form>
-
               <Input
                 onChange={handleInputChange}
                 name="title"
