@@ -5,9 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Loading } from "../components/index";
 import { useState, useEffect } from "react";
-
-
-
+import API from "../utils/API";
+import { Link } from "react-router-dom";
+import DeleteBtn from "../components/DeleteBtn"
 
 
 const Profile = () => {
@@ -16,6 +16,31 @@ const Profile = () => {
 
   const { user, isAuthenticated } = useAuth0();
 
+  const [gigs, setGigs] = useState([])
+
+  // Load all gigs and store them with setBooks
+   useEffect(() => {
+    loadGigs()
+  }, [])
+
+  // Loads all gigs and sets them to gigs
+   function loadGigs() {
+    API.getGigs()
+      .then(res => {
+        setGigs(res.data)
+        console.log(res.data)
+      })
+      .catch(err => console.log(err));
+  };
+
+  console.log(gigs.date)
+
+  // Deletes a gig from the database with a given id, then reloads gigs from the db
+  function deleteGig(id) {
+    API.deleteGig(id)
+      .then(res => loadGigs())
+      .catch(err => console.log(err));
+  };
 
   return (
     isAuthenticated && (
@@ -43,12 +68,28 @@ const Profile = () => {
         <Col size="md-6 sm-12">
         </Col>
       </Row>
-    </Container>
+
+        <List>
+                {gigs.filter(gig => user.name === gig.user).map(gig => (
+                  <ListItem key={gig._id}>
+                    <Link to={"/gigs/" + gig._id}>
+                      <strong>
+                       {gig.title}
+                      </strong>
+                      </Link>
+                      <p><strong>Date:</strong> {gig.date}</p>
+                      <p><strong>Location:</strong> {gig.location}</p>                 
+                    <DeleteBtn onClick={() => deleteGig(gig._id)} />
+                  </ListItem>
+                ))}
+              </List>
+     
+      </Container>
   ));
 }
 
 export default withAuthenticationRequired(Profile, {
-  onRedirecting: () => <Loading />,
+  onRedirecting: () => <Loading />
 });
 
 
