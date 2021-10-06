@@ -43,6 +43,7 @@ function Detail(props) {
                 <strong>{gig.title}</strong>
               </h1>
               <h3> <strong> Date: </strong>{gig.date}</h3>
+              {/* Link below goes to external user profile */}
               <a className= "text-center" href={gig.name}>{user.nickname}</a>
             </Jumbotron>
           </Col>

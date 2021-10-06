@@ -59,11 +59,9 @@ const Profile = () => {
             <p className= "text-center">{user.sub.hobby}</p> 
           </Container> 
             <h4 className= "text-center">Contact</h4> 
-          <List>
-            <ListItem>
-              <a className="list-group-item list-group-item-action"  href="mailto:{user.email}">{user.email}</a>
-            </ListItem>
-          </List> 
+          
+            <a className="list-group-item list-group-item-action"  href="mailto:{user.email}">{user.email}</a>
+          
         </Col>
         <Col size="md-6 sm-12">
         </Col>
