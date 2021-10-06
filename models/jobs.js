@@ -7,7 +7,8 @@ const jobSchema = new Schema({
   description: {type: String},
   date: { type: String},
   contact: {type: String},
-  location: {type: String}
+  location: {type: String},
+  user: {type: String}
 });
 
 const Gig = mongoose.model("Job", jobSchema);
