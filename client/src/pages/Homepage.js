@@ -101,6 +101,8 @@ const filteredData = gigs.filter((gig) => {
 
  const [filteredResults, setFilteredResults] = useState(filteredData);
   
+  console.log(gigs.length);
+  console.log(searchInput.length)
 
     return (
       isAuthenticated && (
@@ -159,12 +161,29 @@ const filteredData = gigs.filter((gig) => {
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1> Gigs List</h1>
+              <div></div>
               <Input icon='search'
                 placeholder='Search a Location'
                 onChange={(e) => searchItems(e.target.value)}
             />
+            
             </Jumbotron>
-            {gigs.length > 2 ? (
+            {(searchInput.length <= 1) ? (
+              <List> {
+                gigs.map(gig => (
+                  <ListItem key={gig._id}>
+                    <Link to={"/gigs/" + gig._id}>
+                      <strong>
+                       {gig.title}
+                      </strong>
+                      </Link>
+                      <p><strong>Date:</strong> {gig.date}</p>
+                      <p><strong>Location:</strong> {gig.location}</p>                 
+                    {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
+                  </ListItem>
+                ))}
+                </List>
+            ) : searchInput.length > 1 ? (
               <List>
                 {filteredResults.map(gig => (
                   <ListItem key={gig._id}>
@@ -179,24 +198,13 @@ const filteredData = gigs.filter((gig) => {
                   </ListItem>
                 ))}
               </List>
-            ) : (
-              <List> {
-              gigs.map(gig => (
-                <ListItem key={gig._id}>
-                  <Link to={"/gigs/" + gig._id}>
-                    <strong>
-                     {gig.title}
-                    </strong>
-                    </Link>
-                    <p><strong>Date:</strong> {gig.date}</p>
-                    <p><strong>Location:</strong> {gig.location}</p>                 
-                  {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
-                </ListItem>
-              ))}
-              </List>
-              )}
-            
-            
+              
+              ): gigs.length == null ? 
+              // If gigs.length = 0
+
+              <p> "No results found" </p>
+              : 0    
+                }
           </Col>
         </Row>
       </Container>
