@@ -1,5 +1,5 @@
 import React from "react";
-import AuthNav from "../AuthNav";
+// import AuthNav from "../AuthNav";
 import MainNav from "../MainNav";
 import './style.css'
 
@@ -10,7 +10,7 @@ const NavBar = () => {
         <div className="container">
           <div className="navbar-brand logo" />
           <MainNav />
-          <AuthNav />
+          {/* <AuthNav /> */}
         </div>
       </nav>
     </div>

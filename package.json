@@ -15,9 +15,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    
-  },
+  "devDependencies": {},
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "axios": "^0.21.4",
