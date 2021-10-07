@@ -14,7 +14,17 @@ const styles = {
       textAlign: 'center',
       border: 'none',
   },
-  contactctn:{ display: 'flex', justifyContent: 'center' }
+  contactctn:{ 
+    display: 'flex', 
+    justifyContent: 'center',
+
+  },
+  profilectn:{
+    background: "#ffff",
+    flexDirection:'column' ,
+    width: "80%" ,
+    margin: "0 auto"
+  }
 }
 
 const Profile = () => {
@@ -52,8 +62,10 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <Container fluid>
+        <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5042949.jpg)` }} className="container-fluid background-img1 text-center img-fluid" id="home" >
         <Row>
           <Col size="md-12">
+            <div className="d-flex justify-content-center"style={styles.profilectn}>
             <h1 className="text-center">Welcome to {user.nickname}'s profile</h1>
             <span></span>
             <div className="text-center">
@@ -72,12 +84,13 @@ const Profile = () => {
               <h4 className="text-center">Contact</h4>
               <a className="list-group-item list-group-item-action" href="mailto:{user.email}" style={styles.contactlink}>{user.email}</a> 
               </Container>
-
+              </div>
           </Col>
+         
           <Col size="md-6 sm-12">
           </Col>
         </Row>
-
+          </div>
         {gigs.length > 0 && <List>
           {gigs.filter(gig => user.name === gig.user).map(gig => (
             <ListItem key={gig._id}>
