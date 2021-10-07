@@ -10,6 +10,11 @@ import { Loading } from "../components/index";
 import Header from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 
+const styles = {
+  detailcontent: {
+    marginTop: '1rem',
+  },
+  }    
 
 function Gigs() {
 
@@ -109,7 +114,7 @@ const filteredData = gigs.filter((gig) => {
       <div>
       <Header />
       <Container fluid>
-        <Row>
+        <Row style={styles.detailcontent}>
           <Col size="md-6">
             <Jumbotron>
               <h1>Add a Gig</h1>
@@ -160,7 +165,7 @@ const filteredData = gigs.filter((gig) => {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1> Gigs List</h1>
+              <h1 className= "mb-4"> Gigs List</h1>
               <div></div>
               <Input icon='search'
                 placeholder='Search a Location'
@@ -168,42 +173,25 @@ const filteredData = gigs.filter((gig) => {
             />
             
             </Jumbotron>
-            {(searchInput.length <= 1) ? (
-              <List> {
-                gigs.map(gig => (
-                  <ListItem key={gig._id}>
-                    <Link to={"/gigs/" + gig._id}>
-                      <strong>
-                       {gig.title}
-                      </strong>
-                      </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>
-                      <p><strong>Location:</strong> {gig.location}</p>                 
-                    {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
-                  </ListItem>
-                ))}
-                </List>
-            ) : searchInput.length > 1 ? (
-              <List>
-                {filteredResults.map(gig => (
-                  <ListItem key={gig._id}>
-                    <Link to={"/gigs/" + gig._id}>
-                      <strong>
-                       {gig.title}
-                      </strong>
-                      </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>
-                      <p><strong>Location:</strong> {gig.location}</p>                 
-                    {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
-                  </ListItem>
-                ))}
-              </List>
-              
-              ): gigs.length == null ? 
-              // If gigs.length = 0
-
-              <p> "No results found" </p>
-              : 0    
+            {(searchInput) ? 
+              gigs.length > 0 ? (
+                <List> {
+                  gigs.map(gig => (
+                    <ListItem key={gig._id}>
+                      <Link to={"/gigs/" + gig._id}>
+                        <strong>
+                        {gig.title}
+                        </strong>
+                        </Link>
+                        <p><strong>Date:</strong> {gig.date}</p>
+                        <p><strong>Location:</strong> {gig.location}</p>                 
+                      {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
+                    </ListItem>
+                  ))}
+                  </List>
+              ) :  // If gigs.length = 0
+              (<p> No results found </p>)
+              : null   
                 }
           </Col>
         </Row>
