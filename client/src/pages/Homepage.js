@@ -14,6 +14,12 @@ const styles = {
   detailcontent: {
     marginTop: '1rem',
   },
+  body: {
+    background: "rgba(204, 175, 198, .5)"
+  },
+  borderbox: {
+    border: ".5px solid black"
+  }
   }    
 
 function Gigs() {
@@ -111,7 +117,7 @@ const filteredData = gigs.filter((gig) => {
 
     return (
       isAuthenticated && (
-      <div>
+      <div style={styles.body}>
       <Header />
       <Container fluid>
         <Row style={styles.detailcontent}>
@@ -125,36 +131,42 @@ const filteredData = gigs.filter((gig) => {
                 name="title"
                 placeholder="Title (required)"
                 value={formObject.title}
+                style={styles.borderbox}
               />
               <Input
                 onChange={handleInputChange}
                 name="description"
                 placeholder="Description (required)"
                 value={formObject.description}
+                style={styles.borderbox}
               />
               <Input
                 onChange={handleInputChange}
                 name="date"
                 placeholder="Date (required)"
                 value={formObject.date}
+                style={styles.borderbox}
               />
                <Input
                 onChange={handleInputChange}
                 name="location"
                 placeholder="Location (required)"
                 value={formObject.location}
+                style={styles.borderbox}
               />
               <Input
                 onChange={handleInputChange}
                 name="payment"
                 placeholder="Payment (optional)"
                 value={formObject.payment}
+                style={styles.borderbox}
               />
                <Input
                 onChange={handleInputChange}
                 name="contact"
                 placeholder="Contact (required)"
                 value={formObject.contact}
+                style={styles.borderbox}
               />
               <FormBtn
                 onClick={handleFormSubmit}
@@ -173,9 +185,9 @@ const filteredData = gigs.filter((gig) => {
          ></Input>
          </Jumbotron>   
             {(searchInput.length <= 1) ? (
-              <List> {
+              <List > {
                 gigs.map(gig => (
-                  <ListItem key={gig._id}>
+                  <ListItem key={gig._id} >
                     <Link to={"/gigs/" + gig._id}>
                       <strong>
                        {gig.title}
