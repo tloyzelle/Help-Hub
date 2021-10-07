@@ -16,4 +16,7 @@ export default {
   saveGig: function(gigData) {
     return axios.post("/api/gigs", gigData);
   },
+  getUsername: function(user) {
+    return axios.get("/api/gigs" + user)
+  }
 };
