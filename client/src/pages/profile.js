@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row, Container } from "../components/Grid";
-import { ListItem, List  } from "../components/List";
+import { ListItem, List } from "../components/List";
 import { useAuth0 } from "@auth0/auth0-react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Loading } from "../components/index";
@@ -9,9 +9,16 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import DeleteBtn from "../components/DeleteBtn"
 
+const styles = {
+  contactlink: {
+      textAlign: 'center',
+      border: 'none',
+  },
+  contactctn:{ display: 'flex', justifyContent: 'center' }
+}
 
 const Profile = () => {
-  
+
   console.log(useAuth0());
 
   const { user, isAuthenticated } = useAuth0();
@@ -19,12 +26,12 @@ const Profile = () => {
   const [gigs, setGigs] = useState([])
 
   // Load all gigs and store them with setBooks
-   useEffect(() => {
+  useEffect(() => {
     loadGigs()
   }, [])
 
   // Loads all gigs and sets them to gigs
-   function loadGigs() {
+  function loadGigs() {
     API.getGigs()
       .then(res => {
         setGigs(res.data)
@@ -44,46 +51,50 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-    <Container fluid>
-      <Row>
-        <Col size="md-12">
-          <h1 className= "text-center">Welcome to {user.nickname}'s profile</h1>
-          <span></span>
-          <div className="text-center">
-            <img alt= "headshot" src={user.picture}/>
-          </div>
-          <Container>  
-            <div></div>
-            <div></div>  
-            <h4 className= "text-center">About</h4>
-            <p className= "text-center">{user.sub.hobby}</p> 
-          </Container> 
-            <h4 className= "text-center">Contact</h4> 
-          
-            <a className="list-group-item list-group-item-action"  href="mailto:{user.email}">{user.email}</a>
-          
-        </Col>
-        <Col size="md-6 sm-12">
-        </Col>
-      </Row>
+      <Container fluid>
+        <Row>
+          <Col size="md-12">
+            <h1 className="text-center">Welcome to {user.nickname}'s profile</h1>
+            <span></span>
+            <div className="text-center">
+              <img alt="headshot" src={user.picture} />
+            </div>
+            <Container>
+              <div></div>
+              <div></div>
+              <h4 className="text-center">About</h4>
+              <p className="text-center">{user.sub.hobby}</p>
+            </Container>
+            
 
-        <List>
-                {gigs.filter(gig => user.name === gig.user).map(gig => (
-                  <ListItem key={gig._id}>
-                    <Link to={"/gigs/" + gig._id}>
-                      <strong>
-                       {gig.title}
-                      </strong>
-                      </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>
-                      <p><strong>Location:</strong> {gig.location}</p>                 
-                    <DeleteBtn onClick={() => deleteGig(gig._id)} />
-                  </ListItem>
-                ))}
-              </List>
-     
+
+            <Container style={styles.contactctn} >
+              <h4 className="text-center">Contact</h4>
+              <a className="list-group-item list-group-item-action" href="mailto:{user.email}" style={styles.contactlink}>{user.email}</a> 
+              </Container>
+
+          </Col>
+          <Col size="md-6 sm-12">
+          </Col>
+        </Row>
+
+        {gigs.length > 0 && <List>
+          {gigs.filter(gig => user.name === gig.user).map(gig => (
+            <ListItem key={gig._id}>
+              <Link to={"/gigs/" + gig._id}>
+                <strong>
+                  {gig.title}
+                </strong>
+              </Link>
+              <p><strong>Date:</strong> {gig.date}</p>
+              <p><strong>Location:</strong> {gig.location}</p>
+              <DeleteBtn onClick={() => deleteGig(gig._id)} />
+            </ListItem>
+          ))}
+        </List>}
+
       </Container>
-  ));
+    ));
 }
 
 export default withAuthenticationRequired(Profile, {
