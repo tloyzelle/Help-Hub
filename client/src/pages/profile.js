@@ -17,13 +17,14 @@ const styles = {
   contactctn:{ 
     display: 'flex', 
     justifyContent: 'center',
+    background: "rgba(255, 255, 255, .5)"
 
   },
   profilectn:{
-    background: "#ffff",
+    background: "rgba(255, 255, 255, .5)",
     flexDirection:'column' ,
     width: "80%" ,
-    margin: "0 auto"
+    margin: "0 auto",
   }
 }
 
@@ -75,14 +76,13 @@ const Profile = () => {
               <div></div>
               <div></div>
               <h4 className="text-center">About</h4>
-              <p className="text-center">{user.sub.hobby}</p>
             </Container>
             
 
 
-            <Container style={styles.contactctn} >
+            <Container style={styles.profilectn} >
               <h4 className="text-center">Contact</h4>
-              <a className="list-group-item list-group-item-action" href="mailto:{user.email}" style={styles.contactlink}>{user.email}</a> 
+              <a className="" href="mailto:{user.email}" style={styles.contactlink}>Click to Email Me </a> 
               </Container>
               </div>
           </Col>
