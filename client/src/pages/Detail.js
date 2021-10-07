@@ -38,6 +38,7 @@ function Detail(props) {
       <Container fluid>
         <Row>
           <Col size="md-12">
+          <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5042949.jpg)` }} className="container-fluid background-img1 text-center img-fluid" id="home" >
             <Jumbotron>
               <h1>
                 <strong>{gig.title}</strong>
@@ -46,6 +47,7 @@ function Detail(props) {
               {/* Link below goes to external user profile */}
               <a className= "text-center" href={gig.name}>{user.nickname}</a>
             </Jumbotron>
+            </div>
           </Col>
         </Row>
         <Row>
