@@ -83,7 +83,7 @@ const Profile = () => {
             <div className="text-center mt-3">
               <img alt="headshot" src={user.picture} />
             </div>
-            <h3 className="text-center">Welcome to {user.nickname}'s profile</h3>
+            <h3 className="text-center">{user.nickname}'s profile</h3>
             <Container>
               <div></div>
               <div></div>
@@ -101,7 +101,7 @@ const Profile = () => {
       <Container fluid>
         <div style={styles.box}>
           <h1 className="text-center ">
-            My Tasks
+            My Tasks 
           </h1>
         </div>
         
