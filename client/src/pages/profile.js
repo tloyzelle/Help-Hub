@@ -101,7 +101,7 @@ const Profile = () => {
       <Container fluid>
         <div style={styles.box}>
           <h1 className="text-center ">
-          &#11015; My Tasks &#11015;
+          &#11015; My Posted Gigs &#11015;
           </h1>
         </div>
         
