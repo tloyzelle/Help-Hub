@@ -19,6 +19,9 @@ const styles = {
   },
   borderbox: {
     border: ".5px solid black"
+  },
+  header: {
+    padding: "150px 0px;"
   }
   }    
 
@@ -118,7 +121,7 @@ const filteredData = gigs.filter((gig) => {
     return (
       isAuthenticated && (
       <div style={styles.body}>
-      <Header />
+      <Header style={styles.header} />
       <Container fluid>
         <Row style={styles.detailcontent}>
           <Col size="md-6">
