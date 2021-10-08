@@ -188,7 +188,7 @@ const [value, onChange] = useState(new Date());
               <h1 className= "mb-4"> Gigs List</h1>
               <div></div>
               <Input icon='search'
-                placeholder='Search a Location'
+                placeholder='Search'
                 onChange={(e) => searchItems(e.target.value)}
          ></Input>
          </Jumbotron>   
