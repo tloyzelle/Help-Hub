@@ -16,16 +16,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-<<<<<<< HEAD
     "bootstrap": "^5.1.1",
     "concurrently": "^6.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "nodemon": "^2.0.12"
-=======
+    "nodemon": "^2.0.12",
     "react-date-picker": "^8.3.3",
     "react-icons": "^4.3.1"
->>>>>>> aaba5ab09e2664093f25244f9120b80f3d3abeac
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
