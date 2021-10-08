@@ -79,7 +79,7 @@ function Detail(props) {
                <strong> Payment: </strong> {gig.payment}
               </p>
               <p className="text-left ml-6 mr-6"> <strong>Description:</strong> {gig.description}</p>
-              <a className= "text-right ml-6 mr-6" href={gig.name}><strong>User:</strong> {user.nickname}</a>
+              <a className= "text-right ml-6 mr-6" href={gig.name}><strong>User:</strong> {gig.user}</a>
               <p className="text-right ml-6 mr-6">
               <strong> Contact: </strong> {gig.contact}
               </p>
