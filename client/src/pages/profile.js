@@ -13,6 +13,7 @@ const styles = {
   contactlink: {
       textAlign: 'center',
       border: 'none',
+      color: 'black'
   },
   contactctn:{ 
     display: 'flex', 
@@ -25,6 +26,16 @@ const styles = {
     flexDirection:'column' ,
     width: "80%" ,
     margin: "0 auto",
+  },
+  box: {
+    padding: "30px 0"
+  },
+  body: {
+    background: "rgba(204, 175, 198, .5)"
+  },
+  header: {
+    padding: "200px 0px",
+    fontFamily: "Raleway', sans-serif"
   }
 }
 
@@ -62,35 +73,38 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <Container fluid>
-        <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5042949.jpg)` }} className="container-fluid background-img1 text-center img-fluid" id="home" >
+      <div style={styles.box, styles.body}>
+      <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5042949.jpg)` }} className="container-fluid background-img1 text-center img-fluid" id="home" >
         <Row>
           <Col size="md-12">
             <div className="d-flex justify-content-center"style={styles.profilectn}>
-            <h1 className="text-center">Welcome to {user.nickname}'s profile</h1>
+            
             <span></span>
-            <div className="text-center">
+            <div className="text-center mt-3">
               <img alt="headshot" src={user.picture} />
             </div>
+            <h3 className="text-center">Welcome to {user.nickname}'s profile</h3>
             <Container>
               <div></div>
               <div></div>
               <h4 className="text-center">About</h4>
             </Container>
             
-
-
-            <Container style={styles.profilectn} >
-              <h4 className="text-center">Contact</h4>
-              <a className="" href="mailto:{user.email}" style={styles.contactlink}>Click to Email Me </a> 
-              </Container>
+              <p className="text-right mb-3 mr-3"> Contact: 
+              <a href="mailto:{user.email}" style={styles.contactlink}> {user.email} </a> 
+              </p>
               </div>
           </Col>
-         
-          <Col size="md-6 sm-12">
-          </Col>
         </Row>
-          </div>
+        </div>
+
+      <Container fluid>
+        <div style={styles.box}>
+          <h1 className="text-center ">
+            My Tasks
+          </h1>
+        </div>
+        
         {gigs.length > 0 && <List>
           {gigs.filter(gig => user.name === gig.user).map(gig => (
             <ListItem key={gig._id}>
@@ -99,14 +113,16 @@ const Profile = () => {
                   {gig.title}
                 </strong>
               </Link>
-              <p><strong>Date:</strong> {gig.date}</p>
+              <p><strong>Date:</strong> {new Date(gig.date).toDateString()}</p>
+              <p><strong>Description:</strong> {gig.description}</p>
               <p><strong>Location:</strong> {gig.location}</p>
               <DeleteBtn onClick={() => deleteGig(gig._id)} />
             </ListItem>
           ))}
         </List>}
-
+       
       </Container>
+       </div>
     ));
 }
 

@@ -6,6 +6,31 @@ import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react"
 
 
+const styles = {
+  contactlink: {
+      textAlign: 'center',
+      border: 'none',
+  },
+  contactctn:{ 
+    display: 'flex', 
+    justifyContent: 'center',
+    background: "rgba(255, 255, 255, .5)"
+
+  },
+  profilectn:{
+    background: "rgba(255, 255, 255, .7)",
+    flexDirection:'column' ,
+    width: "80%" ,
+    margin: "0 auto",
+  },
+  box: {
+    padding: "30px 0"
+  },
+  body: {
+    background: "rgba(204, 175, 198, .5)"
+  }
+}
+
 function Detail(props) {
   const [gig, setGig] = useState({})
 
@@ -39,30 +64,35 @@ function Detail(props) {
         <Row>
           <Col size="md-12">
           <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5042949.jpg)` }} className="container-fluid background-img1 text-center img-fluid" id="home" >
-            <Jumbotron>
-              <h1>
+            
+            <Row>
+
+          <Col size="md-12" >
+            <div className="d-flex justify-content-center"style={styles.profilectn}>
+              <h1 className="text-center">
                 <strong>{gig.title}</strong>
               </h1>
-              <h3> <strong> Date: </strong>{gig.date}</h3>
+              <h4> <strong> Date: </strong>{new Date(gig.date).toDateString()}</h4>
               {/* Link below goes to external user profile */}
-              <a className= "text-center" href={gig.name}>{user.nickname}</a>
-            </Jumbotron>
+              
+              <p className="text-left ml-6 mr-6">
+               <strong> Payment: </strong> {gig.payment}
+              </p>
+              <p className="text-left ml-6 mr-6"> <strong>Description:</strong> {gig.description}</p>
+              <a className= "text-right ml-6 mr-6" href={gig.name}><strong>User:</strong> {user.nickname}</a>
+              <p className="text-right ml-6 mr-6">
+              <strong> Contact: </strong> {gig.contact}
+              </p>
+            </div>  
+          </Col>
+        </Row>
             </div>
           </Col>
         </Row>
         <Row>
           <Col size="md-12">
             <div>
-              <h1 className="text-center">Description</h1>
-              <p className="text-center">
-                {gig.description}
-              </p>
-              <p className="text-center">
-               <strong> Payment: </strong> {gig.payment}
-              </p>
-              <p className="text-center">
-              <strong> Contact: </strong> {gig.contact}
-              </p>
+              
             </div>
           </Col>
         </Row>

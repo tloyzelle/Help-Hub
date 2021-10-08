@@ -15,16 +15,19 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "react-date-picker": "^8.3.3",
+    "react-icons": "^4.3.1"
+  },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "axios": "^0.21.4",
-    "if-env": "^1.0.4",
-    "mongoose": "^5.3.16",
     "bootstrap": "^5.1.1",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.3.16",
     "nodemon": "^2.0.12"
   }
 }
