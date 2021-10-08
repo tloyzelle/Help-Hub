@@ -5,7 +5,7 @@
 Help hub is an application that allows users to view gigs or tasks around their city that they can volunteer to do while also earning money. This requires the user to create an account to view the gigs to sign up for and give information like their email, and gigs for others to view. Almost any task, just ask!
 
 
-![screenshot]()
+![screenshot](client/public/img/helpHubGigList.png)
 
   ## Table of Contents
   
