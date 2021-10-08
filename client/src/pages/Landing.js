@@ -26,7 +26,7 @@ function Landing(props) {
       </Header>
       <div style = {styles.font}>
         <h3  className= "text-center">Welcome to HelpHub</h3>
-        <p className= "text-center"> Click on "gigs" to see who needs help! </p>
+        <p className= "text-center"> Needing help with a task or looking to make some extra money, you came to the right place. Help Hub is an all in one application that allows you to post and search through jobs in your local area. To begin just sign up for a free account!</p>
       </div>
         <Row >
           <Col size="md-6">

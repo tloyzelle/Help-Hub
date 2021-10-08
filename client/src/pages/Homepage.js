@@ -9,6 +9,7 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Loading } from "../components/index";
 import Header from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
+import DatePicker from 'react-date-picker';
 
 const styles = {
   detailcontent: {
@@ -70,7 +71,7 @@ function Gigs() {
       API.saveGig({
         title: formObject.title,
         description: formObject.description,
-        date: formObject.date,
+        date: value,
         location: formObject.location,
         payment: formObject.payment,
         contact: formObject.contact,
@@ -118,6 +119,9 @@ const filteredData = gigs.filter((gig) => {
   console.log(gigs.length);
   console.log(searchInput.length)
 
+// UseState for date picker
+const [value, onChange] = useState(new Date());
+
     return (
       isAuthenticated && (
       <div style={styles.body}>
@@ -143,13 +147,7 @@ const filteredData = gigs.filter((gig) => {
                 value={formObject.description}
                 style={styles.borderbox}
               />
-              <Input
-                onChange={handleInputChange}
-                name="date"
-                placeholder="Date (required)"
-                value={formObject.date}
-                style={styles.borderbox}
-              />
+              
                <Input
                 onChange={handleInputChange}
                 name="location"
@@ -169,6 +167,13 @@ const filteredData = gigs.filter((gig) => {
                 name="contact"
                 placeholder="Contact (required)"
                 value={formObject.contact}
+                style={styles.borderbox}
+              />
+              <DatePicker
+                onChange={onChange}
+               
+               
+                value={value}
                 style={styles.borderbox}
               />
               <FormBtn
@@ -196,7 +201,7 @@ const filteredData = gigs.filter((gig) => {
                        {gig.title}
                       </strong>
                       </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>
+                      <p><strong>Date:</strong> {new Date(gig.date).toDateString()}</p>
                       <p><strong>Location:</strong> {gig.location}</p>                 
                     {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
                   </ListItem>
@@ -211,7 +216,7 @@ const filteredData = gigs.filter((gig) => {
                        {gig.title}
                       </strong>
                       </Link>
-                      <p><strong>Date:</strong> {gig.date}</p>
+                      <p><strong>Date:</strong> {new Date(gig.date).toDateString()}</p>
                       <p><strong>Location:</strong> {gig.location}</p>                 
                     {/* <DeleteBtn onClick={() => deleteGig(gig._id)} /> */}
                   </ListItem>
