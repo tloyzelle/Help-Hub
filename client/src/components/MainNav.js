@@ -1,5 +1,5 @@
 import React from "react";
-
+import AuthNav from "./AuthNav";
 
 function MainNav() {
   return (
@@ -13,6 +13,7 @@ function MainNav() {
       <a className="navbar-brand" href="/Homepage">
         Gigs
       </a>
+      <AuthNav />
 
     </nav>
   );

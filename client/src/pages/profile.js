@@ -1,91 +1,133 @@
 import React from "react";
 import { Col, Row, Container } from "../components/Grid";
-import { ListItem, List  } from "../components/List";
+import { ListItem, List } from "../components/List";
 import { useAuth0 } from "@auth0/auth0-react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Loading } from "../components/index";
 import { useState, useEffect } from "react";
+import API from "../utils/API";
+import { Link } from "react-router-dom";
+import DeleteBtn from "../components/DeleteBtn"
 
+const styles = {
+  contactlink: {
+      textAlign: 'center',
+      border: 'none',
+      color: 'black'
+  },
+  contactctn:{ 
+    display: 'flex', 
+    justifyContent: 'center',
+    background: "rgba(255, 255, 255, .5)"
 
-
-
+  },
+  profilectn:{
+    background: "rgba(255, 255, 255, .5)",
+    flexDirection:'column' ,
+    width: "80%" ,
+    margin: "0 auto",
+  },
+  box: {
+    padding: "30px 0"
+  },
+  body: {
+    background: "rgba(204, 175, 198, .5)"
+  },
+  header: {
+    padding: "200px 0px",
+    fontFamily: "Raleway', sans-serif"
+  }
+}
 
 const Profile = () => {
-  
+
   console.log(useAuth0());
 
-  const { user, isAuthenticated , getAccessTokenSilently } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
-  const [userMetadata, setUserMetadata] = useState(null);
+  const [gigs, setGigs] = useState([])
 
+  // Load all gigs and store them with setBooks
   useEffect(() => {
-    const getUserMetadata = async () => {
-      const domain = "dev-9jk73ji7.us.auth0.com";
-  
-      try {
-        const accessToken = await getAccessTokenSilently({
-          audience: `https://${domain}/api/v2/`,
-          scope: "read:current_user",
-        });
-  
-        const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
-  
-        const metadataResponse = await fetch(userDetailsByIdUrl, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-  
-        const { user_metadata } = await metadataResponse.json();
-  
-        setUserMetadata(user_metadata);
-        console.log(user_metadata);
-      } catch (e) {
-        console.log(e.message);
-      }
-      
-    };
-  
-    getUserMetadata();
-  }, [getAccessTokenSilently, user.sub]);
+    loadGigs()
+  }, [])
+
+  // Loads all gigs and sets them to gigs
+  function loadGigs() {
+    API.getGigs()
+      .then(res => {
+        setGigs(res.data)
+        console.log(res.data)
+      })
+      .catch(err => console.log(err));
+  };
+
+  console.log(gigs.date)
+
+  // Deletes a gig from the database with a given id, then reloads gigs from the db
+  function deleteGig(id) {
+    API.deleteGig(id)
+      .then(res => loadGigs())
+      .catch(err => console.log(err));
+  };
 
   return (
     isAuthenticated && (
-    <Container fluid>
-      <Row>
-        <Col size="md-12">
-          <h1 className= "text-center">Welcome to {user.nickname}'s profile</h1>
-          <span></span>
-          <div className="text-center">
-            <img alt= "headshot" src={user.picture}/>
-          </div>
-          <Container>  
-            <div></div>
-            <div></div>  
-            <h4 className= "text-center">About</h4>
-            <p className= "text-center">{user.sub.hobby}</p> 
-          </Container> 
-            <h4 className= "text-center">Contact</h4> 
-          <List>
-            <ListItem>
-              <a className="list-group-item list-group-item-action"  href="mailto:{user.email}">{user.email}</a>
+      <div style={styles.box, styles.body}>
+      <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5042949.jpg)` }} className="container-fluid background-img1 text-center img-fluid" id="home" >
+        <Row>
+          <Col size="md-12">
+            <div className="d-flex justify-content-center"style={styles.profilectn}>
+            
+            <span></span>
+            <div className="text-center mt-3">
+              <img alt="headshot" src={user.picture} />
+            </div>
+            <h3 className="text-center">Welcome to {user.nickname}'s profile</h3>
+            <Container>
+              <div></div>
+              <div></div>
+              <h4 className="text-center">About</h4>
+            </Container>
+            
+              <p className="text-right mb-3 mr-3"> Contact: 
+              <a href="mailto:{user.email}" style={styles.contactlink}> {user.email} </a> 
+              </p>
+              </div>
+          </Col>
+        </Row>
+        </div>
+
+      <Container fluid>
+        <div style={styles.box}>
+          <h1 className="text-center ">
+            My Tasks
+          </h1>
+        </div>
+        
+        {gigs.length > 0 && <List>
+          {gigs.filter(gig => user.name === gig.user).map(gig => (
+            <ListItem key={gig._id}>
+              <Link to={"/gigs/" + gig._id}>
+                <strong>
+                  {gig.title}
+                </strong>
+              </Link>
+              <p><strong>Date:</strong> {new Date(gig.date).toDateString()}</p>
+              <p><strong>Description:</strong> {gig.description}</p>
+              <p><strong>Location:</strong> {gig.location}</p>
+              <DeleteBtn onClick={() => deleteGig(gig._id)} />
             </ListItem>
-          </List> 
-        </Col>
-        <Col size="md-6 sm-12">
-        </Col>
-        {userMetadata ? (
-          <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
-        ) : (
-          "No user metadata defined"
-        )}
-      </Row>
-    </Container>
-  ));
+          ))}
+        </List>}
+       
+      </Container>
+       </div>
+    ));
 }
 
 export default withAuthenticationRequired(Profile, {
-  onRedirecting: () => <Loading />,
+  onRedirecting: () => <Loading />
 });
 
 
