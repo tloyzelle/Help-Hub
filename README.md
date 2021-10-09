@@ -12,6 +12,8 @@ Help hub is an application that allows users to view gigs or tasks around their 
   * [Installation](#installation)
   
   * [Usage](#usage)
+ 
+  * [Technologies](#technologies)
   
   * [License](#license)
 
@@ -27,9 +29,9 @@ Help hub is an application that allows users to view gigs or tasks around their 
 
 To start the app in the CLI : "npm start"  
 
-
-
-![Screenshot]()
+  ## Technologies
+  
+  Technologies used inclue MySQL, Node & Express, Javascript, React, Heroku, Bootstrap, Auth0, and Datepicker.
 
 
 
@@ -45,7 +47,10 @@ To start the app in the CLI : "npm start"
       
   ## Questions  
 
-  If you have any questions about the repo or application, open an issue or contact me directly at sample. More of my work can be found at [My Github](https://github.com/brob92993).
+  If you have any questions about the repo or application, open an issue or contact:
+  
+  [Brian Robinson](https://github.com/brob92993)  |  [Omar Nava](https://github.com/omar-94) | [Cameron Blake](https://github.com/Cameron-Blake) | [Sanusi Cole](https://github.com/gohen1216) | [Taegan Loyzelle](https://github.com/tloyzelle)
+  
 
   [HelpHub Repository](https://github.com/tloyzelle/Help-Hub.git)
 
