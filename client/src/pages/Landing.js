@@ -12,6 +12,26 @@ const styles = {
   font: {
     font: "sans-serif",
     padding: "50px"
+  },
+  image1: {
+    borderRadius: "2%",
+    backgroundImage: "url(https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/images/media/images/persuasive-ads-coca-cola.jpg)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
+    backgroundPositionX: "center",
+    backgroundPositionY: "center",
+    height: "200px",
+    margin: "auto"
+  },
+  image2: {
+    borderRadius: "2%",
+    backgroundImage: "url(https://nextgenpharmacist.com/wp-content/uploads/2021/01/ngp-webgraphics-beasponsor.png)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
+    backgroundPositionX: "center",
+    backgroundPositionY: "center",
+    height: "200px",
+    margin: 'auto'
   }
 }
 
@@ -33,15 +53,25 @@ function Landing(props) {
             <Jumbotron>
               <h1>Ad</h1>
             </Jumbotron>
+            <div style={styles.image1} className="mx-5"></div>
           </Col>
           <Col size="md-6">
             <Jumbotron>
               <h1>Sponsored By </h1>
             </Jumbotron>
-
-      </Col>
-      </Row>
+              <div style={styles.image2} className="mx-5"></div>
+         </Col>
+        </Row>
      </Container>
+
+     <footer class="text-center" id="footer">
+      <br></br>
+      <br></br>
+      <br></br>
+      <p><small>  &#169; 2021 Help Hub </small></p>
+      <p><small> Thank you for your support! ❤️ </small></p>
+      <br></br>
+      </footer>
      </div>
     );
   }; 
